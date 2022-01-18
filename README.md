@@ -1,7 +1,7 @@
 # sage
-Sage is a web app that helps schoolar centres to manage all needs in one place.
+<h1>Sage is a web app that helps schoolar centres to manage all needs in one place.</h1>
 
-Steps:<br>
+<h2>Steps:</h2><br>
 1 - Install XAMPP web server<br>
 2 - Go to "database" directory<br>
 3 - Import the DB file named ""<br>
@@ -10,7 +10,7 @@ Steps:<br>
 6 - Enjoy using my app<br><br><br>
 
 
-Details:<br>
+<h2>Details:</h2><br>
 The first thing you need to use my app is install XAMPP web server, so you could use mySql server and Apache server.<br>
 Then go to "database" directory and import the database file to your XAMPP app in your local machine.<br>
 Furthermore start mySql and Apache server in your local machine.<br>
