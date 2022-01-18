@@ -1,0 +1,31 @@
+td {
+    border: none;
+}
+
+input {
+    padding: 15px;
+    width: 280px;
+    font-weight: bold;
+}
+
+select {
+    padding: 10px;
+    width: 280px;
+}
+
+#connection {
+    text-align: center;
+}
+
+#niveau {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+}
+
+#add {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #594f8d;
+    color: #e0e4e8;
+}
