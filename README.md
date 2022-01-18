@@ -10,7 +10,7 @@
 7  - Paste them in the htdocs repositry<br>
 8  - Start mySql server<br>
 9  - Start Apache server<br>
-10 - Enjoy using my app<br><br><br>
+10 - Enjoy using my app<br>
 
 ## links:
 *XAMPP* app: https://www.apachefriends.org/download.html
