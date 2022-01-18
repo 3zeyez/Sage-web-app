@@ -5,10 +5,10 @@
 1 - Install XAMPP web server<br>
 2 - Go to "database" directory<br>
 3 - Import the DB's file named "galois.sql"<br>
-4 - Copy the index file
+4 - Copy the index file<br>
 5 - Copy all the repositrys except the "db"<br>
-6 - Go to the XAMPP dir
-7 - Paste them in the htdocs repositry
+6 - Go to the XAMPP dir<br>
+7 - Paste them in the htdocs repositry<br>
 8 - Start mySql server<br>
 9 - Start Apache server<br>
 10 - Enjoy using my app<br><br><br>
