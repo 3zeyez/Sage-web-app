@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage scolaire</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Sage scolaire</h1>
+    </header>
+
+    <div class="wrapper">
+        <nav class="sidebar">
+            <ul>
+                <a href="home.html">
+                    <li><i class="fas fa-home"></i>Page d'acceuil</li>
+                </a>
+                <a href="prof.html">
+                    <li><i class="fas fa-chalkboard-teacher"></i>Ajouter un professeur</li>
+                </a>
+                <a href="/php/eleve.php">
+                    <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
+                </a>
+                <a href="">
+                    <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
+                </a>
+                <a href="">
+                    <li><i class="fas fa-trash"></i>Supprimer un élève</li>
+                </a>
+                <a href="#">
+                    <li><i class="fas fa-user"></i>Votre profile</li>
+                </a>
+                <a href="/php/logout.php">
+                    <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
+                </a>
+            </ul>
+
+            <div class="span">Développé par ABBASSI&nbsp;Ahmed&nbsp;Aziz</div>
+
+            <div class="social_media">
+                <a href="#"><i class="fab fa-linkedin"></i></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+
+        <section class="main_content">
+            <h2>Les options des recherches</h2>
+            <form action="/php/afficher.php" method="post">
+                <table class="center">
+                    <tr>
+                        <td>
+                            <input type="search" name="search1" id="search1" placeholder="Nom d'élève">
+                        </td>
+                        <td>
+                            <input type="submit" name="eleve" value="Chercher" onclick="return check_search('search1');">
+                        </td>
+                        <td>ou&nbsp;bien</td>
+                        <td>
+                            <input type="submit" name="tout1" id="tout1" style="width: auto;" value="  Afficher tout les élèves">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="search" name="search2" id="search2" placeholder="Nom du prof">
+                        </td>
+                        <td>
+                            <input type="submit" name="prof" value="Chercher" onclick="return check_search('search2');">
+                        </td>
+                        <td>ou&nbsp;bien</td>
+                        <td>
+                            <input type="submit" name="tout2" id="tout2" style="width: auto;" value="    Afficher tout les profs">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="search" name="search3" id="search3" placeholder="Nom du groupe">
+                        </td>
+                        <td>
+                            <input type="submit" name="groupe" value="Chercher" onclick="return check_search('search3');">
+                        </td>
+                        <td>ou&nbsp;bien</td>
+                        <td>
+                            <input type="submit" name="tout3" id="tout" style="width: auto;" value="Afficher tout les groupes">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <!-- <table class="center bord">
+                <tr>
+                    <th colspan="2">Information d'élève</th>
+                </tr>
+                <tr>
+                    <td>Nom et prénom:</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Numero du téléphone:</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Niveau scolaire:</td>
+                    <td>---------------</td>
+                </tr>
+            </table>
+            <table class="center bord">
+                <tr>
+                    <th colspan="5">--------------- - Prof ---------------</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Séance N:1</td>
+                    <td>Séance N:2</td>
+                    <td>Séance N:3</td>
+                    <td>Séance N:4</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+                <tr>
+                    <td>Mois de ---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                    <td>---------------</td>
+                </tr>
+            </table> -->
+
+        </section>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
