@@ -2,7 +2,7 @@
 Sage is a web app that helps schoolar centres to manage all needs in one place.
 
 Steps:
-1 - Install XAMPP web server\n
+1 - Install XAMPP web server<br>
 2 - Go to "database" directory
 3 - Import the DB file named ""
 4 - Start mySql server
