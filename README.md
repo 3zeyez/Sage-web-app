@@ -1,6 +1,6 @@
 # Sage is a web app that helps scholar centers to manage all needs in one place.
 
-<h2>Steps:</h2>
+## Steps:
 1  - Install XAMPP web server<br>
 2  - Go to "db" directory<br>
 3  - Import the DB's file named "galois.sql"<br>
@@ -15,7 +15,7 @@
 ## links:
 XAMPP app: https://www.apachefriends.org/download.html
 
-<h2>Details:</h2>
+## Details:
 The first thing you need to use my app is install XAMPP web server, so you could use mySql server and Apache server.<br>
 Then go to "db" directory and import the database file to your XAMPP app in your local machine.<br>
 Furthermore start mySql and Apache server in your local machine.<br>
