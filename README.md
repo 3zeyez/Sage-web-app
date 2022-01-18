@@ -13,7 +13,7 @@
 10 - Enjoy using my app<br><br><br>
 
 ## links:
-XAMPP app: https://www.apachefriends.org/download.html
+*XAMPP* app: https://www.apachefriends.org/download.html
 
 ## Details:
 The first thing you need to use my app is install XAMPP web server, so you could use mySql server and Apache server.<br>
