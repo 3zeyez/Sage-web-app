@@ -3,7 +3,7 @@
 
 <h2>Steps:</h2>
 1  - Install XAMPP web server<br>
-2  - Go to "database" directory<br>
+2  - Go to "db" directory<br>
 3  - Import the DB's file named "galois.sql"<br>
 4  - Copy the index file<br>
 5  - Copy all the repositrys except the "db"<br>
