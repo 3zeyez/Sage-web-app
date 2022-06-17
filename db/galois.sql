@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 27, 2021 at 11:32 AM
+-- Generation Time: Jun 16, 2022 at 12:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `galois`
 --
+CREATE DATABASE IF NOT EXISTS `galois` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `galois`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chaine`
+--
+
+CREATE TABLE `chaine` (
+  `idchaine` int(11) NOT NULL DEFAULT 0,
+  `nomchaine` varchar(50) NOT NULL DEFAULT '',
+  `deschaine` varchar(50) NOT NULL DEFAULT '',
+  `idstream` int(11) NOT NULL DEFAULT 0,
+  `idcontenu` int(11) NOT NULL DEFAULT 0,
+  `kkkk` varchar(50) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -45,7 +62,16 @@ INSERT INTO `eleve` (`ideleve`, `np`, `niveau`, `idsec`, `tel`) VALUES
 ('E002', 'Hedi Maaoui', '4', 1, '21531940'),
 ('E003', 'Asma Bachrouch', '4', 4, '22333444'),
 ('E004', 'Med Aziz Guesmi', '4', 1, '92222222'),
-('E005', 'Wael Ben Othmane', '2', 3, '21531940');
+('E005', 'Wael Ben Othmane', '2', 3, '21531940'),
+('E006', 'Ahmed Aziz Abbassi', '3', 2, '20258316'),
+('E007', 'Ahmed Aziz Abbassi', '3', 1, '20258316'),
+('E008', 'sdfsadfsdf sdfdsaff', '3', 5, '22333444'),
+('E009', 'Amir Abbassi', '2', 1, '20258316'),
+('E010', 'Hanin 28236773', '2', 2, '20258316'),
+('E011', 'Ahmed Aziz', '2', 1, '20258316'),
+('E012', 'Ahmed Aziz', '1', 0, '20258316'),
+('E013', 'Mech Aziz', '1', 0, '22333444'),
+('E014', 'Ahmed Aziz', '1', 0, '29287316');
 
 -- --------------------------------------------------------
 
@@ -89,6 +115,7 @@ CREATE TABLE `grp` (
 --
 
 CREATE TABLE `grps` (
+  `idgrp` varchar(4) NOT NULL,
   `nomgrp` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -148,7 +175,22 @@ INSERT INTO `prof` (`idprof`, `np`, `tel`, `idmat`) VALUES
 ('P002', 'Wael Mrabet', '97160166', 1),
 ('P003', 'Dhamen Hami', '43523452', 1),
 ('P004', 'Asma Hami', '21531940', 3),
-('P005', 'Imen Godhben', '23455678', 3);
+('P005', 'Imen Godhben', '23455678', 3),
+('P006', 'Ahmed Aziz Abbassi', '20258316', 1),
+('P007', 'akjdkj sdfasdf', '20258316', 2),
+('P008', 'Meha Mechmech', '22333444', 1),
+('P009', 'Ahmed Aziz', '20258316', 3),
+('P010', 'Ahmed Aziz', '20258316', 3),
+('P011', 'Ahmed Aziz', '20258316', 3),
+('P012', 'Ahmed Aziz', '20258316', 2),
+('P013', 'Ahmed Aziz', '20258316', 1),
+('P014', 'Ahmed Aziz', '20258316', 1),
+('P015', 'Ahmed Aziz', '20258316', 3),
+('P016', 'Ahmed Aziz', '20258316', 1),
+('P017', 'Mech Meha', '22333444', 2),
+('P018', 'Mech Meha', '22333444', 2),
+('P019', 'Mech Meha', '20258316', 2),
+('P020', 'Ahmed Aziz', '90999876', 2);
 
 -- --------------------------------------------------------
 
@@ -166,12 +208,26 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`idsec`, `sec`) VALUES
+(0, 'Pas de section'),
 (1, 'Sciences informatiques'),
 (2, 'Mathématique'),
 (3, 'Sciences techniques'),
 (4, 'Sciences expérimentales'),
 (5, 'Economie et gestion'),
 (6, 'Lettres');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sreamer`
+--
+
+CREATE TABLE `sreamer` (
+  `idstream` int(11) NOT NULL DEFAULT 0,
+  `pseudo` varchar(50) NOT NULL DEFAULT '',
+  `mail` varchar(50) NOT NULL DEFAULT '',
+  `pays` varchar(50) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -196,6 +252,13 @@ INSERT INTO `user` (`username`, `pwd`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chaine`
+--
+ALTER TABLE `chaine`
+  ADD PRIMARY KEY (`idchaine`),
+  ADD KEY `idstream` (`idstream`);
 
 --
 -- Indexes for table `eleve`
@@ -228,7 +291,7 @@ ALTER TABLE `grp`
 -- Indexes for table `grps`
 --
 ALTER TABLE `grps`
-  ADD PRIMARY KEY (`nomgrp`);
+  ADD PRIMARY KEY (`idgrp`,`nomgrp`);
 
 --
 -- Indexes for table `mat`
@@ -256,6 +319,12 @@ ALTER TABLE `prof`
 --
 ALTER TABLE `section`
   ADD PRIMARY KEY (`idsec`);
+
+--
+-- Indexes for table `sreamer`
+--
+ALTER TABLE `sreamer`
+  ADD PRIMARY KEY (`idstream`);
 
 --
 -- Indexes for table `user`
@@ -290,8 +359,7 @@ ALTER TABLE `fpr`
 --
 ALTER TABLE `grp`
   ADD CONSTRAINT `ideleve` FOREIGN KEY (`ideleve`) REFERENCES `eleve` (`ideleve`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `idprof` FOREIGN KEY (`idprof`) REFERENCES `prof` (`idprof`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `nomgroupe` FOREIGN KEY (`nomgrp`) REFERENCES `grps` (`nomgrp`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `idprof` FOREIGN KEY (`idprof`) REFERENCES `prof` (`idprof`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mois`
