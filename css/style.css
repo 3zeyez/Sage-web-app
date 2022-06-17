@@ -73,6 +73,10 @@ h2 {
 
 .wrapper .sidebar ul a .fas {
     width: 25px;
+} 
+
+.wrapper .sidebar ul a .fa-solid {
+    width: 25px;
 }
 
 .wrapper .sidebar ul a:hover {
@@ -84,6 +88,10 @@ h2 {
 }
 
 .wrapper .sidebar ul a:hover li .fas {
+    width: 30px;
+}
+
+.wrapper .sidebar ul a:hover li .fa-solid {
     width: 30px;
 }
 
