@@ -1,129 +1,132 @@
 <?php
 if (isset($_POST['suivant'])) {
-  $server = 'localhost';
-  $user = 'root';
-  $pwd = '';
-  $dbname = 'galois';
-
-  $conn = mysqli_connect($server, $user, $pwd, $dbname);
-  if (!$conn) {
-    die("Connection echoue " . mysqli_connect_error());
+  include('connect.php');
+  setcookie('prof', $_POST['prof'], time() + (86400 * 30), "/") or die('pb cookie prof');
 ?>
 
-    <script>
-      alert("Connection echoue")
-      window.location.href = '/php/addgrp1.php';
-    </script>
+  <!DOCTYPE html>
+  <html lang="en">
 
-  <?php
-  } else {
-  ?>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un groupe</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/53b45ec73e.js" crossorigin="anonymous"></script>
+  </head>
 
-    <!DOCTYPE html>
-    <html lang="en">
+  <body>
 
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Ajouter un groupe</title>
-      <link rel="stylesheet" href="/css/form.css">
-      <link rel="stylesheet" href="/css/style.css">
-      <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    </head>
+    <header>
+      <h1>Sage scolaire</h1>
+    </header>
 
-    <body>
+    <div class="wrapper">
+      <nav class="sidebar">
+        <ul>
+          <a href="/html/home.html">
+            <li><i class="fas fa-home"></i>Page d'acceuil</li>
+          </a>
+          <a href="/html/prof.html">
+            <li><i class="fas fa-chalkboard-teacher"></i>Ajouter un professeur</li>
+          </a>
+          <a href="/php/eleve.php">
+            <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
+          </a>
+          <a href="/php/addgrp1.php">
+            <li><i class="fa-solid fa-people-group"></i>Ajouter un groupe</li>
+          </a>
+          <a href="">
+            <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
+          </a>
+          <a href="">
+            <li><i class="fas fa-trash"></i>Supprimer un élève</li>
+          </a>
+          <a href="#">
+            <li><i class="fas fa-user"></i>Votre profile</li>
+          </a>
+          <a href="/php/logout.php">
+            <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
+          </a>
+        </ul>
 
-      <header>
-        <h1>Sage scolaire</h1>
-      </header>
+        <div class="span">Développé par ABBASSI&nbsp;Ahmed&nbsp;Aziz</div>
 
-      <div class="wrapper">
-        <nav class="sidebar">
-          <ul>
-            <a href="home.html">
-              <li><i class="fas fa-home"></i>Page d'acceuil</li>
-            </a>
-            <a href="prof.html">
-              <li><i class="fas fa-chalkboard-teacher"></i>Ajouter un professeur</li>
-            </a>
-            <a href="/php/eleve.php">
-              <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
-            </a>
-            <a href="">
-              <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
-            </a>
-            <a href="">
-              <li><i class="fas fa-trash"></i>Supprimer un élève</li>
-            </a>
-            <a href="#">
-              <li><i class="fas fa-user"></i>Votre profile</li>
-            </a>
-            <a href="/index.html">
-              <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
-            </a>
-          </ul>
+        <div class="social_media">
+          <a href="#"><i class="fab fa-linkedin"></i></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </nav>
 
-          <div class="span">Développé par ABBASSI&nbsp;Ahmed&nbsp;Aziz</div>
+      <section class="main_content">
+        <h2>Ajouter un nouveau groupe</h2>
+        <form action="/php/grp.php" method="POST">
+          <table class="center">
+            <tr>
+              <td>Liste d'élèves:</td>
+              <td>
 
-          <div class="social_media">
-            <a href="#"><i class="fab fa-linkedin"></i></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-          </div>
-        </nav>
+                <?php
+                  if (isset($_COOKIE['niv']) && isset($_COOKIE['section'])) {
+                    $niv = $_COOKIE['niv'];
+                    if ($_COOKIE['section'] <> 'no section') {
+                      $section = $_COOKIE['section'];
+                    } else {
+                      $section = 0;
+                    }
+                    
+                  } else {
+                    die("Niveau et section sont unset!");
+                  }
 
-        <section class="main_content">
-          <h2>Ajouter un nouveau groupe</h2>
-          <form action="/php/grp.php" method="POST">
-            <table class="center">
-              <tr>
-                <td>Liste d'élèves:</td>
-                <td>
-
-                  <?php
-                  $idmat = $_POST['mat'];
-                  $query = "SELECT * FROM prof WHERE idmat = '$idmat';";
+                  // echo $niv . $section;
+                  $query = "SELECT * FROM eleve WHERE niveau = '$niv' AND idsec = '$section';";
                   $res = mysqli_query($conn, $query);
+                  // echo "it's correct";
 
                   $n = mysqli_num_rows($res);
 
-                  echo "<select name='prof' size='$n'>";
+                  echo "<select name='eleves[]' size='$n' multiple>";
 
                   while ($t = mysqli_fetch_array($res)) {
-                    $idprof = $t['idprof'];
+                    $ideleve = $t['ideleve'];
                     $np = $t['np'];
 
-                    echo "<option value='$idprof'> $np </option>";
+                    echo "<option value='$ideleve'> $np </option>";
                   }
 
                   echo "</select>";
-                  ?>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">
-                  <input type="reset" name="annuler" id="annuler" value="Annuler">
-                </td>
-                <td style="text-align: center;">
-                  <input type="submit" name="suiv" id="suiv" value="Suivant">
-                </td>
-              </tr>
-            </table>
-          </form>
-        </section>
-    </body>
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">
+                <input type="reset" name="annuler" id="annuler" value="Annuler">
+              </td>
+              <td style="text-align: center;">
+                <input type="submit" name="suivant" id="suiv" value="Suivant">
+              </td>
+            </tr>
+          </table>
+        </form>
+      </section>
+  </body>
 
-    </html>
+  </html>
 
   <?php
-  }
+    # removing cookies
+    # setcookie('niv', $niv, time() - 1, "/");
+    # setcookie('section', $section, time() - 1, "/"); 
 } else {
   ?>
 
   <script>
-    window.location.href = '/index.html';
+    window.location.href = '/';
   </script>
 
 <?php

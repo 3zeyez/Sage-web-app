@@ -1,13 +1,5 @@
 <?php
-$server = "localhost";
-$root = "root";
-$password = "";
-$database = "galois";
-
-$conn = mysqli_connect($server, $root, $password, $database);
-if (!$conn) {
-  die("connection echoue!!!" . mysqli_connect_error());
-}
+include('connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +12,7 @@ if (!$conn) {
   <title>Ajouter un groupe</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/form.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://kit.fontawesome.com/53b45ec73e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,16 +21,19 @@ if (!$conn) {
   </header>
 
   <div class="wrapper">
-    <nav class="sidebar">
+  <nav class="sidebar">
       <ul>
-        <a href="home.html">
+        <a href="/html/home.html">
           <li><i class="fas fa-home"></i>Page d'acceuil</li>
         </a>
-        <a href="prof.html">
+        <a href="/html/prof.html">
           <li><i class="fas fa-chalkboard-teacher"></i>Ajouter un professeur</li>
         </a>
         <a href="/php/eleve.php">
           <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
+        </a>
+        <a href="/php/addgrp1.php">
+          <li><i class="fa-solid fa-people-group"></i>Ajouter un groupe</li>
         </a>
         <a href="">
           <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
@@ -49,7 +44,7 @@ if (!$conn) {
         <a href="#">
           <li><i class="fas fa-user"></i>Votre profile</li>
         </a>
-        <a href="/index.html">
+        <a href="/php/logout.php">
           <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
         </a>
       </ul>
@@ -68,24 +63,11 @@ if (!$conn) {
       <h2>Ajouter un nouveau groupe</h2>
       <form action="/php/addgrp2.php" method="POST" class="center">
         <table class="center">
-          <!-- <tr>
-            <td>
-              Niveau:
-            </td>
-            <td>
-              <div id="niveau">
-                <input type="radio" name="niv" id="niv" value="1">1
-                <input type="radio" name="niv" id="niv" value="2">2
-                <input type="radio" name="niv" id="niv" value="3">3
-                <input type="radio" name="niv" id="niv" value="4">4
-              </div>
-            </td>
-          </tr> -->
           <tr>
             <td><label for="niv">Niveau scolaire:</label> </td>
             <td>
-              <select name="niv" id="niv" onchange="allow();">
-                <option value="0">---------------</option>
+              <select name="niv" id="niv" required onchange="allow();">
+                <option value="">---------------</option>
                 <option value="1">1ère</option>
                 <option value="2">2éme</option>
                 <option value="3">3éme</option>
@@ -96,8 +78,8 @@ if (!$conn) {
           <tr>
             <td><label for="section">Section:</label></td>
             <td>
-              <select name="section" id="section" disabled>
-                <option value="0">---------------</option>
+              <select name="section" id="section" required disabled>
+                <option value="">---------------</option>
                 <option value="1">Sciences informatiques</option>
                 <option value="2">Mathématique</option>
                 <option value="3">Sciences techniques</option>
@@ -110,12 +92,12 @@ if (!$conn) {
           <tr>
             <td>Matière:</td>
             <td style="text-align: center;">
-              <select name="mat" id="mat" size="4">
+              <select name="mat" id="mat" required>
                 <?php
                 $query = "SELECT * FROM mat;";
                 $res = mysqli_query($conn, $query);
 
-                // echo "<option value='0' selected>---------------</option>";
+                echo "<option value=''>---------------</option>";
 
                 while ($t = mysqli_fetch_array($res)) {
                 ?>
