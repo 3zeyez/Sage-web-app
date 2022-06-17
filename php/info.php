@@ -8,7 +8,7 @@
   <title>Information d'un élève</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/form.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://kit.fontawesome.com/53b45ec73e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
   </header>
 
   <div class="wrapper">
-    <nav class="sidebar">
+  <nav class="sidebar">
       <ul>
         <a href="/html/home.html">
           <li><i class="fas fa-home"></i>Page d'acceuil</li>
@@ -29,6 +29,9 @@
         <a href="/php/eleve.php">
           <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
         </a>
+        <a href="/php/addgrp1.php">
+          <li><i class="fa-solid fa-people-group"></i>Ajouter un groupe</li>
+        </a>
         <a href="">
           <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
         </a>
@@ -38,7 +41,7 @@
         <a href="#">
           <li><i class="fas fa-user"></i>Votre profile</li>
         </a>
-        <a href="/index.html">
+        <a href="/php/logout.php">
           <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
         </a>
       </ul>
@@ -46,7 +49,7 @@
       <div class="span">Développé par ABBASSI&nbsp;Ahmed&nbsp;Aziz</div>
 
       <div class="social_media">
-        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-github"></i></a>
@@ -58,21 +61,9 @@
 
 
         <?php
-        $server = "localhost";
-        $user = "root";
-        $pwd = "";
-        $dbname = "galois";
-
-        $conn = mysqli_connect($server, $user, $pwd, $dbname);
-        if (!$conn) {
-          die("connection echoue!!!!" . mysqli_connect_error());
-        }
+        include('connect.php');
 
         if (isset($_POST['submit'])) {
-        ?>
-
-
-          <?php
           $np = $_POST['submit'];
           $query = "SELECT * FROM eleve WHERE np = '$np';";
           $res = mysqli_query($conn, $query);
@@ -109,7 +100,11 @@
                 if ($t['niveau'] == 1) {
                   echo $t['niveau'] . "ère";
                 } else {
-                  echo $t['niveau'] . "<sup>ème</sup> " . $t['section'];
+                  $idsec = $t['idsec'];
+                  $req = "SELECT sec FROM section WHERE idsec='$idsec';";
+                  $res = mysqli_query($conn, $req);
+                  $section = mysqli_fetch_array($res)[0];
+                  echo $t['niveau'] . "<sup>ème</sup> " . $section;
                 }
                 ?>
               </td>

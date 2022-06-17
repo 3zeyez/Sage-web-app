@@ -39,8 +39,7 @@ if (isset($_POST['submit'])) {
 ?>
 
     <script>
-      alert("Ajout du professeur confirmé");
-      window.location.href = '/html/prof.html';
+      window.location.href = '/html/conf_prof.html';
     </script>
 
   <?php
@@ -48,8 +47,7 @@ if (isset($_POST['submit'])) {
   ?>
 
     <script>
-      alert("Ajout du professeur échoué");
-      window.location.href = '/html/prof.html';
+      window.location.href = '/html/echec_prof.html';
     </script>
 
   <?php
@@ -64,3 +62,5 @@ if (isset($_POST['submit'])) {
 <?php
 }
 ?>
+
+</html>

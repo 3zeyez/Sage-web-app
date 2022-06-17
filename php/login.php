@@ -2,15 +2,7 @@
 session_start();
 
 if (isset($_POST['connecter'])) {
-  $server = "localhost";
-  $root = "root";
-  $password = "";
-  $database = "galois";
-
-  $conn = mysqli_connect($server, $root, $password, $database);
-  if (!$conn) {
-    die("connection echoue!!!" . mysqli_connect_error());
-  }
+  include('connect.php');
 
   $user = $_POST['user'];
   $pwd = $_POST['pwd'];
@@ -51,15 +43,7 @@ if (isset($_POST['connecter'])) {
     }
   }
 } else if (isset($_SESSION['user'])) {
-  $server = "localhost";
-  $root = "root";
-  $password = "";
-  $database = "galois";
-
-  $conn = mysqli_connect($server, $root, $password, $database);
-  if (!$conn) {
-    die("connection echoue!!!" . mysqli_connect_error());
-  }
+  include('connect.php');
 
   $usersession = $_SESSION['user'];
   $pwdsession = $_SESSION['pwd'];

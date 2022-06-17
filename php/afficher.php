@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sage scolaire</title>
   <link rel="stylesheet" href="/css/style.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://kit.fontawesome.com/53b45ec73e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
   </header>
 
   <div class="wrapper">
-    <nav class="sidebar">
+  <nav class="sidebar">
       <ul>
         <a href="/html/home.html">
           <li><i class="fas fa-home"></i>Page d'acceuil</li>
@@ -27,6 +27,9 @@
         <a href="/php/eleve.php">
           <li><i class="fas fa-user-graduate"></i>Ajouter un élève</li>
         </a>
+        <a href="/php/addgrp1.php">
+          <li><i class="fa-solid fa-people-group"></i>Ajouter un groupe</li>
+        </a>
         <a href="">
           <li><i class="fas fa-trash-alt"></i>Supprimer un professeur</li>
         </a>
@@ -36,7 +39,7 @@
         <a href="#">
           <li><i class="fas fa-user"></i>Votre profile</li>
         </a>
-        <a href="/index.html">
+        <a href="/php/logout.php">
           <li><i class="fas fa-sign-out-alt"></i>Se déconnecter</li>
         </a>
       </ul>
@@ -55,15 +58,7 @@
       <table class="center bord">
         <?php
         if (isset($_POST['tout1'])) {
-          $server = "localhost";
-          $root = "root";
-          $password = "";
-          $database = "galois";
-
-          $conn = mysqli_connect($server, $root, $password, $database);
-          if (!$conn) {
-            die("connection echoue!!!" . mysqli_connect_error());
-          }
+          include('connect.php');
 
           $query = "SELECT * FROM eleve ORDER BY np;";
           $res = mysqli_query($conn, $query);
@@ -111,18 +106,10 @@
             }
           }
         } else if (isset($_POST['eleve'])) {
-          $server = "localhost";
-          $root = "root";
-          $password = "";
-          $database = "galois";
-
-          $conn = mysqli_connect($server, $root, $password, $database);
-          if (!$conn) {
-            die("connection echoue!!!" . mysqli_connect_error());
-          }
+          include('connect.php');
 
           $np = $_POST['search1'];
-          $query = "SELECT * FROM eleve WHERE np LIKE \"%$np%\" ORDER BY np;";
+          $query = "SELECT * FROM eleve WHERE np LIKE \"%$np%\" ORDER BY np, niveau desc;";
           $res = mysqli_query($conn, $query);
 
           $n = mysqli_num_rows($res);
