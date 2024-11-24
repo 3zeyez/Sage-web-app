@@ -21,4 +21,4 @@ Then go to "db" directory and import the database file to your XAMPP app in your
 Furthermore start mySql and Apache server in your local machine.<br>
 Now you can enjoy using my app.<br><br>
 
-Thanks for reading! For more information you can call me: 20258316 or mail me : ahmedaziz.abbassi@gmail.com
+Thanks for reading!
